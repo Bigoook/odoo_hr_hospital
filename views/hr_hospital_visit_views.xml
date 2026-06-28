@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_hospital_visit_tree" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.tree</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <list string="Visits">
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="visit_date"/>
+                <field name="disease_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_visit_form" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.form</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <form string="Visit">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="scheduled,done,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Visit Details">
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="visit_date"/>
+                        </group>
+                        <group string="Diagnosis">
+                            <field name="disease_id"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_visit" model="ir.actions.act_window">
+        <field name="name">Visits</field>
+        <field name="res_model">hr.hospital.visit</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

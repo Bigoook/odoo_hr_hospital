@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Doctors -->
+    <record id="demo_doctor_1" model="hr.hospital.doctor">
+        <field name="name">Dr. Olena Kovalenko</field>
+        <field name="specialty">Cardiology</field>
+        <field name="phone">+380501234567</field>
+        <field name="email">kovalenko@hospital.ua</field>
+    </record>
+
+    <record id="demo_doctor_2" model="hr.hospital.doctor">
+        <field name="name">Dr. Mykola Petrenko</field>
+        <field name="specialty">Neurology</field>
+        <field name="phone">+380507654321</field>
+        <field name="email">petrenko@hospital.ua</field>
+    </record>
+
+    <record id="demo_doctor_3" model="hr.hospital.doctor">
+        <field name="name">Dr. Iryna Sydorenko</field>
+        <field name="specialty">General Practice</field>
+        <field name="phone">+380509876543</field>
+        <field name="email">sydorenko@hospital.ua</field>
+    </record>
+
+    <!-- Patients -->
+    <record id="demo_patient_1" model="hr.hospital.patient">
+        <field name="name">Ivan Bondarenko</field>
+        <field name="birth_date">1985-03-15</field>
+        <field name="gender">male</field>
+        <field name="phone">+380671112233</field>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+    </record>
+
+    <record id="demo_patient_2" model="hr.hospital.patient">
+        <field name="name">Halyna Marchenko</field>
+        <field name="birth_date">1972-07-22</field>
+        <field name="gender">female</field>
+        <field name="phone">+380673334455</field>
+        <field name="doctor_id" ref="demo_doctor_2"/>
+    </record>
+
+    <record id="demo_patient_3" model="hr.hospital.patient">
+        <field name="name">Serhii Tkachenko</field>
+        <field name="birth_date">1990-11-08</field>
+        <field name="gender">male</field>
+        <field name="phone">+380675556677</field>
+        <field name="doctor_id" ref="demo_doctor_3"/>
+    </record>
+
+</odoo>

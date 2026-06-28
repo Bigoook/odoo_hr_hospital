@@ -1,0 +1,32 @@
+{
+    'name': 'HR Hospital',
+    'summary': 'HR Hospital',
+    'author': 'big_ooo',
+    'website': 'https://odoo.school/',
+    'category': 'Customizations',
+    'license': 'LGPL-3',
+    'version': '19.0.1.0.0',
+    'depends': [
+        'base',
+    ],
+    'external_dependencies': {
+        'python': [],
+    },
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+    'images': ['static/description/icon.png'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/hr_hospital_disease_data.xml',
+        'views/hr_hospital_disease_views.xml',
+        'views/hr_hospital_doctor_views.xml',
+        'views/hr_hospital_patient_views.xml',
+        'views/hr_hospital_visit_views.xml',
+        'views/hr_hospital_menu.xml',
+    ],
+
+    'demo': [
+        'demo/hr_hospital_demo.xml',
+    ],
+}
