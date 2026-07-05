@@ -2,18 +2,18 @@
 <odoo>
 
     <record id="disease_flu" model="hr.hospital.disease">
-        <field name="name">Influenza (Flu)</field>
-        <field name="description">Contagious respiratory illness caused by influenza viruses.</field>
+        <field name="name">Грип</field>
+        <field name="description">Заразне респіраторне захворювання, спричинене вірусами грипу.</field>
     </record>
 
     <record id="disease_hypertension" model="hr.hospital.disease">
-        <field name="name">Hypertension</field>
-        <field name="description">Chronically elevated blood pressure above normal levels.</field>
+        <field name="name">Гіпертонія</field>
+        <field name="description">Хронічно підвищений артеріальний тиск вище норми.</field>
     </record>
 
     <record id="disease_diabetes" model="hr.hospital.disease">
-        <field name="name">Diabetes Mellitus</field>
-        <field name="description">Metabolic disease characterized by high blood sugar levels.</field>
+        <field name="name">Цукровий діабет</field>
+        <field name="description">Метаболічне захворювання, що характеризується високим рівнем цукру в крові.</field>
     </record>
 
 </odoo>

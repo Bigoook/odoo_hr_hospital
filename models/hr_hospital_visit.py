@@ -2,35 +2,35 @@ from odoo import fields, models
 
 
 class HrHospitalVisit(models.Model):
-    _name = "hr.hospital.visit"
-    _description = "Patient Visit"
+    _name = 'hr.hospital.visit'
+    _description = 'Patient Visit'
 
     patient_id = fields.Many2one(
-        comodel_name="hr.hospital.patient",
-        string="Patient",
+        comodel_name='hr.hospital.patient',
+        string='Patient',
         required=True,
     )
     doctor_id = fields.Many2one(
-        comodel_name="hr.hospital.doctor",
-        string="Doctor",
+        comodel_name='hr.hospital.doctor',
+        string='Doctor',
         required=True,
     )
     disease_id = fields.Many2one(
-        comodel_name="hr.hospital.disease",
-        string="Diagnosis",
+        comodel_name='hr.hospital.disease',
+        string='Diagnosis',
     )
     visit_date = fields.Datetime(
-        string="Visit Date",
+        string='Visit Date',
         default=fields.Datetime.now,
         required=True,
     )
-    notes = fields.Text(string="Notes")
+    notes = fields.Text(string='Notes')
     state = fields.Selection(
         selection=[
-            ("scheduled", "Scheduled"),
-            ("done", "Done"),
-            ("cancelled", "Cancelled"),
+            ('scheduled', 'Scheduled'),
+            ('done', 'Done'),
+            ('cancelled', 'Cancelled'),
         ],
-        string="Status",
-        default="scheduled",
+        string='Status',
+        default='scheduled',
     )
