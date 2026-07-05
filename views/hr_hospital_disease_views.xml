@@ -6,7 +6,8 @@
         <field name="model">hr.hospital.disease</field>
         <field name="arch" type="xml">
             <list string="Diseases">
-                <field name="name"/>
+                <field name="display_name" string="Name"/>
+                <field name="parent_id"/>
                 <field name="description"/>
             </list>
         </field>
@@ -20,8 +21,19 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="parent_id"/>
                         <field name="description"/>
                     </group>
+                    <notebook>
+                        <page string="Sub-diseases">
+                            <field name="child_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

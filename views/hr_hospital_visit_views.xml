@@ -8,7 +8,8 @@
             <list string="Visits">
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
-                <field name="visit_date"/>
+                <field name="scheduled_date"/>
+                <field name="actual_date"/>
                 <field name="disease_id"/>
                 <field name="state"/>
             </list>
@@ -27,16 +28,22 @@
                     <group>
                         <group string="Visit Details">
                             <field name="patient_id"/>
-                            <field name="doctor_id"/>
-                            <field name="visit_date"/>
+                            <field name="doctor_id" readonly="state == 'done'"/>
+                            <field name="scheduled_date" readonly="state == 'done'"/>
+                            <field name="actual_date" readonly="state == 'done'"/>
                         </group>
                         <group string="Diagnosis">
                             <field name="disease_id"/>
                         </group>
                     </group>
-                    <group string="Notes">
-                        <field name="notes" nolabel="1"/>
-                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                        <page string="Epicrisis">
+                            <field name="epicrisis" nolabel="1"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

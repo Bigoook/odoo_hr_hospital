@@ -24,12 +24,15 @@
                     <group>
                         <group string="Personal Information">
                             <field name="name"/>
-                            <field name="birth_date"/>
                             <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
                             <field name="phone"/>
                             <field name="email"/>
                         </group>
                         <group string="Medical">
+                            <field name="blood_type"/>
+                            <field name="insurance_number"/>
                             <field name="doctor_id"/>
                         </group>
                     </group>
@@ -38,9 +41,19 @@
                             <field name="visit_ids">
                                 <list>
                                     <field name="doctor_id"/>
-                                    <field name="visit_date"/>
+                                    <field name="scheduled_date"/>
                                     <field name="disease_id"/>
                                     <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Doctor History">
+                            <field name="history_ids" context="{'active_test': False}">
+                                <list editable="bottom">
+                                    <field name="doctor_id"/>
+                                    <field name="assignment_date"/>
+                                    <field name="change_date"/>
+                                    <field name="active"/>
                                 </list>
                             </field>
                         </page>

@@ -8,6 +8,8 @@
             <list string="Doctors">
                 <field name="name"/>
                 <field name="specialty"/>
+                <field name="category_id"/>
+                <field name="is_intern"/>
                 <field name="phone"/>
                 <field name="email"/>
             </list>
@@ -26,6 +28,18 @@
                             <field name="specialty"/>
                             <field name="phone"/>
                             <field name="email"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group string="Medical Information">
+                            <field name="category_id"/>
+                            <field name="is_intern" readonly="1"/>
+                            <field name="mentor_id"
+                                   invisible="not is_intern"
+                                   domain="[('is_intern', '=', False), ('id', '!=', id)]"/>
+                            <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="blood_type"/>
                         </group>
                     </group>
                     <notebook>
@@ -43,7 +57,7 @@
                             <field name="visit_ids">
                                 <list>
                                     <field name="patient_id"/>
-                                    <field name="visit_date"/>
+                                    <field name="scheduled_date"/>
                                     <field name="disease_id"/>
                                     <field name="state"/>
                                 </list>

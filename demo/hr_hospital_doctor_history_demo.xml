@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Попереднє призначення лікаря, яке було змінено -->
+    <record id="demo_doctor_history_1" model="hr.hospital.doctor.history">
+        <field name="patient_id" ref="demo_patient_1"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="assignment_date">2024-05-05</field>
+        <field name="change_date">2025-01-10</field>
+        <field name="active">False</field>
+    </record>
+
+    <!-- Актуальні призначення лікарів -->
+    <record id="demo_doctor_history_2" model="hr.hospital.doctor.history">
+        <field name="patient_id" ref="demo_patient_1"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="assignment_date">2025-01-10</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_doctor_history_3" model="hr.hospital.doctor.history">
+        <field name="patient_id" ref="demo_patient_2"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="assignment_date">2026-02-15</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_doctor_history_4" model="hr.hospital.doctor.history">
+        <field name="patient_id" ref="demo_patient_3"/>
+        <field name="doctor_id" ref="demo_doctor_3"/>
+        <field name="assignment_date">2026-03-01</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

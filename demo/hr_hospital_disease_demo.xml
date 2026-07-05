@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="demo_disease_cardio" model="hr.hospital.disease">
+        <field name="name">Серцево-судинні захворювання</field>
+        <field name="description">Група захворювань серця та судин.</field>
+    </record>
+
+    <record id="demo_disease_hypertension_2" model="hr.hospital.disease">
+        <field name="name">Артеріальна гіпертензія</field>
+        <field name="parent_id" ref="demo_disease_cardio"/>
+    </record>
+
+    <record id="demo_disease_arrhythmia" model="hr.hospital.disease">
+        <field name="name">Аритмія</field>
+        <field name="parent_id" ref="demo_disease_cardio"/>
+    </record>
+
+    <record id="demo_disease_resp" model="hr.hospital.disease">
+        <field name="name">Респіраторні захворювання</field>
+        <field name="description">Група захворювань дихальної системи.</field>
+    </record>
+
+    <record id="demo_disease_bronchitis" model="hr.hospital.disease">
+        <field name="name">Бронхіт</field>
+        <field name="parent_id" ref="demo_disease_resp"/>
+    </record>
+
+</odoo>

@@ -51,4 +51,20 @@
         sequence="10"
     />
 
+    <menuitem
+        id="menu_hr_hospital_doctor_category"
+        name="Doctor Categories"
+        parent="menu_hr_hospital_config"
+        action="action_hr_hospital_doctor_category"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_hr_hospital_doctor_history"
+        name="Doctor History"
+        parent="menu_hr_hospital_config"
+        action="action_hr_hospital_doctor_history"
+        sequence="30"
+    />
+
 </odoo>
