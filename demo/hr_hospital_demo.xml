@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Лікарі -->
     <record id="demo_doctor_1" model="hr.hospital.doctor">
         <field name="name">Коваленко Олена</field>
         <field name="specialty">Кардіологія</field>
@@ -23,7 +22,6 @@
         <field name="email">sydorenko@hospital.ua</field>
     </record>
 
-    <!-- Пацієнти -->
     <record id="demo_patient_1" model="hr.hospital.patient">
         <field name="name">Бондаренко Іван</field>
         <field name="birth_date">1985-03-15</field>

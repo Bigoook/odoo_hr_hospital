@@ -8,7 +8,7 @@
         <field name="scheduled_date">2024-01-15 09:00:00</field>
         <field name="actual_date">2024-01-15 09:10:00</field>
         <field name="state">done</field>
-        <field name="epicrisis"><![CDATA[<p>Пацієнт скаржиться на підвищений тиск. Призначено лікування та контроль тиску.</p>]]></field>
+        <field name="epicrisis" type="html"><p>Пацієнт скаржиться на підвищений тиск. Призначено лікування та контроль тиску.</p></field>
     </record>
 
     <record id="demo_visit_2" model="hr.hospital.visit">
@@ -18,7 +18,7 @@
         <field name="scheduled_date">2024-02-01 10:00:00</field>
         <field name="actual_date">2024-02-01 10:05:00</field>
         <field name="state">done</field>
-        <field name="epicrisis"><![CDATA[<p>Симптоми грипу, призначено постільний режим та медикаментозну терапію.</p>]]></field>
+        <field name="epicrisis" type="html"><p>Симптоми грипу, призначено постільний режим та медикаментозну терапію.</p></field>
     </record>
 
     <record id="demo_visit_3" model="hr.hospital.visit">
@@ -50,7 +50,7 @@
         <field name="scheduled_date">2024-03-12 13:00:00</field>
         <field name="actual_date">2024-03-12 13:15:00</field>
         <field name="state">done</field>
-        <field name="epicrisis"><![CDATA[<p>Діагностовано бронхіт, призначено відхаркувальні засоби.</p>]]></field>
+        <field name="epicrisis" type="html"><p>Діагностовано бронхіт, призначено відхаркувальні засоби.</p></field>
     </record>
 
 </odoo>

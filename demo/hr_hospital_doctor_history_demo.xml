@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Попереднє призначення лікаря, яке було змінено -->
     <record id="demo_doctor_history_1" model="hr.hospital.doctor.history">
         <field name="patient_id" ref="demo_patient_1"/>
         <field name="doctor_id" ref="demo_doctor_2"/>
@@ -10,7 +9,6 @@
         <field name="active">False</field>
     </record>
 
-    <!-- Актуальні призначення лікарів -->
     <record id="demo_doctor_history_2" model="hr.hospital.doctor.history">
         <field name="patient_id" ref="demo_patient_1"/>
         <field name="doctor_id" ref="demo_doctor_1"/>

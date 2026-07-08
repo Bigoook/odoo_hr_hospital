@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_hr_hospital_doctor_category_tree" model="ir.ui.view">
-        <field name="name">hr.hospital.doctor.category.tree</field>
+    <record id="view_hr_hospital_doctor_category_list" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.category.list</field>
         <field name="model">hr.hospital.doctor.category</field>
         <field name="arch" type="xml">
             <list string="Doctor Categories">
