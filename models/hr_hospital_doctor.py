@@ -8,11 +8,10 @@ class HrHospitalDoctor(models.Model):
     _description = 'Doctor'
 
     name = fields.Char(string='Full Name', required=True)
-    specialty = fields.Char(string='Specialty')
-    phone = fields.Char(string='Phone')
-    email = fields.Char(string='Email')
+    specialty = fields.Char()
+    phone = fields.Char()
+    email = fields.Char()
     is_intern = fields.Boolean(
-        string='Is Intern',
         compute='_compute_is_intern',
         store=True,
     )
@@ -49,4 +48,4 @@ class HrHospitalDoctor(models.Model):
     def _check_mentor_is_not_intern(self):
         for doctor in self:
             if doctor.mentor_id and doctor.mentor_id.is_intern:
-                raise ValidationError('Ментором не може бути лікар, який є інтерном.')
+                raise ValidationError('A mentor cannot be a doctor who is an intern.')

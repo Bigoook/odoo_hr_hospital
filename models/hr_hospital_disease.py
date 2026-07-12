@@ -33,7 +33,7 @@ class HrHospitalDisease(models.Model):
     @api.constrains('parent_id')
     def _check_parent_recursion(self):
         if self._has_cycle():
-            raise ValidationError('Помилка! Не можна створювати циклічну ієрархію хвороб.')
+            raise ValidationError('Error! You cannot create a cyclic hierarchy of diseases.')
 
     def _compute_display_name(self):
         for disease in self:
@@ -41,7 +41,7 @@ class HrHospitalDisease(models.Model):
             current = disease
             visited = set()
             while current and current.id not in visited:
-                names.insert(0, current.name)
+                names.append(current.name)
                 visited.add(current.id)
                 current = current.parent_id
-            disease.display_name = ' / '.join(names)
+            disease.display_name = ' / '.join(reversed(names))

@@ -7,8 +7,8 @@ class HrHospitalPatient(models.Model):
     _description = 'Patient'
 
     name = fields.Char(string='Full Name', required=True)
-    phone = fields.Char(string='Phone')
-    email = fields.Char(string='Email')
+    phone = fields.Char()
+    email = fields.Char()
     insurance_number = fields.Char(string='Insurance Policy Number', size=20)
     doctor_id = fields.Many2one(
         comodel_name='hr.hospital.doctor',

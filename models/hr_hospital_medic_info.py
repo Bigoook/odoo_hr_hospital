@@ -25,11 +25,9 @@ class HrHospitalMedicInfo(models.AbstractModel):
             ('male', 'Male'),
             ('female', 'Female'),
         ],
-        string='Gender',
     )
     birth_date = fields.Date(string='Date of Birth')
     age = fields.Integer(
-        string='Age',
         compute='_compute_age',
     )
 

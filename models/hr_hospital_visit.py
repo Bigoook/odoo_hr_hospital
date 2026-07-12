@@ -11,7 +11,7 @@ class HrHospitalVisit(models.Model):
 
     actual_date = fields.Datetime(string='Actual Visit Date')
     epicrisis = fields.Html(string='Epicrisis / Summary')
-    notes = fields.Text(string='Notes')
+    notes = fields.Text()
     state = fields.Selection(
         selection=[
             ('scheduled', 'Scheduled'),
@@ -21,7 +21,7 @@ class HrHospitalVisit(models.Model):
         string='Status',
         default='scheduled',
     )
-    active = fields.Boolean(string='Active', default=True)
+    active = fields.Boolean(default=True)
 
     patient_id = fields.Many2one(
         comodel_name='hr.hospital.patient',
@@ -50,13 +50,13 @@ class HrHospitalVisit(models.Model):
             for visit in self:
                 if visit.state == 'done':
                     if touches_protected:
-                        raise UserError('Не можна змінювати дату, час або лікаря візиту, що вже відбувся.')
+                        raise UserError('You cannot change the date, time, or doctor of a visit that has already taken place.')
                     if archiving:
-                        raise UserError('Не можна архівувати візит, що вже відбувся.')
+                        raise UserError('You cannot archive a visit that has already taken place.')
         return super().write(vals)
 
     def unlink(self):
         for visit in self:
             if visit.state == 'done':
-                raise UserError('Не можна видаляти візит, що вже відбувся.')
+                raise UserError('You cannot delete a visit that has already taken place.')
         return super().unlink()

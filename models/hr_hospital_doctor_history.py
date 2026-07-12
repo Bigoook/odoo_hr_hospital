@@ -24,7 +24,7 @@ class HrHospitalDoctorHistory(models.Model):
         default=fields.Date.context_today,
     )
     change_date = fields.Date(string='Doctor Change Date')
-    active = fields.Boolean(string='Active', default=True)
+    active = fields.Boolean(default=True)
 
     @api.onchange('assignment_date', 'change_date')
     def _onchange_check_dates(self):
@@ -32,8 +32,8 @@ class HrHospitalDoctorHistory(models.Model):
         if self.assignment_date and self.change_date and self.change_date < self.assignment_date:
             return {
                 'warning': {
-                    'title': 'Помилка',
-                    'message': 'Дата зміни лікаря не може бути раніше ніж дата призначення',
+                    'title': 'Error',
+                    'message': "The doctor's change date cannot be earlier than the assignment date",
                 }
             }
         return None
