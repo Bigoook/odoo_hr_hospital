@@ -24,3 +24,28 @@ class HrHospitalPatient(models.Model):
         inverse_name='patient_id',
         string='Visits',
     )
+
+    def action_view_visit_history(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Visit History',
+            'res_model': 'hr.hospital.visit',
+            'view_mode': 'list,form,calendar',
+            'domain': [('patient_id', '=', self.id)],
+            'context': {'default_patient_id': self.id},
+        }
+
+    def action_create_quick_visit(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'New Visit',
+            'res_model': 'hr.hospital.visit',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_patient_id': self.id,
+                'default_doctor_id': self.doctor_id.id,
+            },
+        }

@@ -28,6 +28,7 @@
         'views/hr_hospital_visit_views.xml',
         'wizards/hr_hospital_mass_reassign_doctor_wizard_views.xml',
         'wizards/hr_hospital_visit_report_wizard_views.xml',
+        'wizards/hr_hospital_disease_report_wizard_views.xml',
         'views/hr_hospital_menu.xml',
     ],
 
