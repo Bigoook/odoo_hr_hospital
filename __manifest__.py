@@ -5,9 +5,10 @@
     'website': 'https://odoo.school/',
     'category': 'Customizations',
     'license': 'LGPL-3',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'depends': [
         'base',
+        'web',
     ],
     'external_dependencies': {
         'python': [],
@@ -26,6 +27,7 @@
         'views/hr_hospital_doctor_history_views.xml',
         'views/hr_hospital_patient_views.xml',
         'views/hr_hospital_visit_views.xml',
+        'report/hr_hospital_doctor_report_views.xml',
         'wizards/hr_hospital_mass_reassign_doctor_wizard_views.xml',
         'wizards/hr_hospital_visit_report_wizard_views.xml',
         'wizards/hr_hospital_disease_report_wizard_views.xml',

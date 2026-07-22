@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_hr_hospital_doctor" model="ir.actions.report">
+        <field name="name">Doctor Profile Report</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_hospital.report_hr_hospital_doctor</field>
+        <field name="report_file">hr_hospital.report_hr_hospital_doctor</field>
+        <field name="print_report_name">'Doctor - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+
+    <template id="report_hr_hospital_doctor">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doctor">
+
+                <div class="header">
+                    <div class="row">
+                        <div class="col-3" t-if="res_company.logo">
+                            <img t-att-src="image_data_uri(res_company.logo)"
+                                 style="max-height: 75px;" alt="Company Logo"/>
+                        </div>
+                        <div t-attf-class="text-end #{'col-9' if res_company.logo else 'col-12'}">
+                            <strong t-field="res_company.name"/>
+                            <div t-field="res_company.partner_id"
+                                 t-options='{"widget": "contact", "fields": ["address", "phone", "email"], "no_marker": true}'/>
+                        </div>
+                    </div>
+                    <div class="clearfix" style="border-bottom: 1px solid #cccccc; margin-bottom: 8px;"/>
+                </div>
+
+                <div class="footer">
+                    <div class="text-center" style="font-size: 10px; color: #666666;">
+                        <span>Printed on </span><span t-out="print_datetime"/>
+                        <span> — </span>
+                        <span t-field="res_company.city"/>
+                    </div>
+                    <div class="text-center" style="font-size: 10px; color: #666666;">
+                        Page <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+
+                <div class="page hr_hospital_doctor_report">
+
+                    <h2>
+                        <span t-field="doctor.name"/>
+                        <span t-if="doctor.specialty"> — <span t-field="doctor.specialty"/></span>
+                    </h2>
+
+                    <t t-set="visit_status_colors" t-value="{'scheduled': '#fff3cd', 'done': '#d4edda', 'cancelled': '#f8d7da'}"/>
+
+                    <h4 class="mt-4">Visit History</h4>
+                    <table class="table table-sm table-bordered" t-if="doctor.visit_ids">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Patient</th>
+                                <th>Diagnosis</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doctor.visit_ids" t-as="visit">
+                                <td><span t-field="visit.scheduled_date"/></td>
+                                <td><span t-field="visit.patient_id.name"/></td>
+                                <td><span t-field="visit.disease_id.name"/></td>
+                                <td t-attf-style="background-color: #{visit_status_colors.get(visit.state, '')};">
+                                    <span t-field="visit.state"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p t-else="" class="text-muted">No visits recorded for this doctor.</p>
+
+                    <h4 class="mt-4">Patients</h4>
+                    <table class="table table-sm table-bordered" t-if="doctor.patient_ids">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doctor.patient_ids" t-as="patient">
+                                <td><span t-field="patient.name"/></td>
+                                <td><span t-field="patient.gender"/></td>
+                                <td><span t-field="patient.birth_date"/></td>
+                                <td><span t-field="patient.phone"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p t-else="" class="text-muted">No patients assigned to this doctor.</p>
+
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>
