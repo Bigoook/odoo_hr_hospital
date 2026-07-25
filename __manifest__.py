@@ -34,6 +34,12 @@
         'views/hr_hospital_menu.xml',
     ],
 
+    'assets': {
+        'web.report_assets_common': [
+            'hr_hospital/static/src/scss/hr_hospital_doctor_report.scss',
+        ],
+    },
+
     'demo': [
         'demo/hr_hospital_demo.xml',
         'demo/hr_hospital_doctor_history_demo.xml',

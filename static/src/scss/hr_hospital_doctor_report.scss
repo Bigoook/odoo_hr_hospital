@@ -1,0 +1,31 @@
+.o_hr_hospital_report_logo {
+    max-height: 75px;
+}
+
+.o_hr_hospital_report_header_separator {
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 8px;
+}
+
+.o_hr_hospital_report_footer_text {
+    font-size: 10px;
+    color: #666666;
+}
+
+.hr_hospital_doctor_report {
+
+    .o_hr_hospital_visit_status {
+
+        &.o_hr_hospital_visit_status_scheduled {
+            background-color: #fff3cd;
+        }
+
+        &.o_hr_hospital_visit_status_done {
+            background-color: #d4edda;
+        }
+
+        &.o_hr_hospital_visit_status_cancelled {
+            background-color: #f8d7da;
+        }
+    }
+}

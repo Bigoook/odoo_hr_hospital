@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="action_report_hr_hospital_doctor" model="ir.actions.report">
-        <field name="name">Doctor Profile Report</field>
+        <field name="name">Doctor Profile Report (PDF)</field>
         <field name="model">hr.hospital.doctor</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">hr_hospital.report_hr_hospital_doctor</field>
@@ -13,6 +13,17 @@
         <field name="paperformat_id" ref="base.paperformat_euro"/>
     </record>
 
+    <record id="action_report_hr_hospital_doctor_html" model="ir.actions.report">
+        <field name="name">Doctor Profile Report (Preview)</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.report_hr_hospital_doctor</field>
+        <field name="report_file">hr_hospital.report_hr_hospital_doctor</field>
+        <field name="print_report_name">'Doctor - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+    </record>
+
     <template id="report_hr_hospital_doctor">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doctor">
@@ -21,7 +32,7 @@
                     <div class="row">
                         <div class="col-3" t-if="res_company.logo">
                             <img t-att-src="image_data_uri(res_company.logo)"
-                                 style="max-height: 75px;" alt="Company Logo"/>
+                                 class="o_hr_hospital_report_logo" alt="Company Logo"/>
                         </div>
                         <div t-attf-class="text-end #{'col-9' if res_company.logo else 'col-12'}">
                             <strong t-field="res_company.name"/>
@@ -29,16 +40,16 @@
                                  t-options='{"widget": "contact", "fields": ["address", "phone", "email"], "no_marker": true}'/>
                         </div>
                     </div>
-                    <div class="clearfix" style="border-bottom: 1px solid #cccccc; margin-bottom: 8px;"/>
+                    <div class="clearfix o_hr_hospital_report_header_separator"/>
                 </div>
 
                 <div class="footer">
-                    <div class="text-center" style="font-size: 10px; color: #666666;">
+                    <div class="text-center o_hr_hospital_report_footer_text">
                         <span>Printed on </span><span t-out="print_datetime"/>
                         <span> — </span>
                         <span t-field="res_company.city"/>
                     </div>
-                    <div class="text-center" style="font-size: 10px; color: #666666;">
+                    <div class="text-center o_hr_hospital_report_footer_text">
                         Page <span class="page"/> / <span class="topage"/>
                     </div>
                 </div>
@@ -49,8 +60,6 @@
                         <span t-field="doctor.name"/>
                         <span t-if="doctor.specialty"> — <span t-field="doctor.specialty"/></span>
                     </h2>
-
-                    <t t-set="visit_status_colors" t-value="{'scheduled': '#fff3cd', 'done': '#d4edda', 'cancelled': '#f8d7da'}"/>
 
                     <h4 class="mt-4">Visit History</h4>
                     <table class="table table-sm table-bordered" t-if="doctor.visit_ids">
@@ -67,7 +76,7 @@
                                 <td><span t-field="visit.scheduled_date"/></td>
                                 <td><span t-field="visit.patient_id.name"/></td>
                                 <td><span t-field="visit.disease_id.name"/></td>
-                                <td t-attf-style="background-color: #{visit_status_colors.get(visit.state, '')};">
+                                <td t-attf-class="o_hr_hospital_visit_status o_hr_hospital_visit_status_#{visit.state}">
                                     <span t-field="visit.state"/>
                                 </td>
                             </tr>
