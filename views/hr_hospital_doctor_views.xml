@@ -105,18 +105,33 @@
         <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
             <kanban default_group_by="category_id" quick_create="true">
+                <field name="intern_ids"/>
                 <templates>
+                    <t t-name="menu">
+                        <a role="menuitem" t-if="widget.editable" type="open" class="dropdown-item">Edit</a>
+                        <a role="menuitem" t-if="widget.deletable" type="delete" class="dropdown-item">Delete</a>
+                    </t>
                     <t t-name="card">
                         <div class="d-flex flex-column">
                             <strong><field name="name"/></strong>
                             <span><field name="specialty"/></span>
+                            <span class="text-muted">
+                                <field name="category_id"/>
+                            </span>
                             <span><field name="phone"/></span>
                             <span><field name="email"/></span>
+                        </div>
+                        <div t-if="record.intern_ids.raw_value.length" class="mt-2">
+                            <strong>Interns:</strong>
+                            <field name="intern_ids" widget="many2many_tags"/>
                         </div>
                         <footer>
                             <a type="object" name="action_create_quick_visit" class="btn btn-primary">
                                 New Visit
                             </a>
+                            <div class="oe_kanban_bottom_right ms-auto">
+                                <a type="open" class="btn btn-secondary">Edit</a>
+                            </div>
                         </footer>
                     </t>
                 </templates>
