@@ -32,6 +32,22 @@
     />
 
     <menuitem
+        id="menu_hr_hospital_reporting"
+        name="Reporting"
+        parent="menu_hr_hospital_root"
+        sequence="40"
+    />
+
+    <menuitem
+        id="menu_hr_hospital_visit_pivot"
+        name="Visits Pivot"
+        parent="menu_hr_hospital_reporting"
+        action="action_hr_hospital_visit_pivot"
+        sequence="10"
+    />
+
+
+    <menuitem
         id="menu_hr_hospital_config"
         name="Configuration"
         parent="menu_hr_hospital_root"

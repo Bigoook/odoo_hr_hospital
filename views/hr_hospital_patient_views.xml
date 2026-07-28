@@ -20,6 +20,12 @@
         <field name="model">hr.hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Patient">
+                <header>
+                    <button name="action_create_quick_visit" type="object"
+                            string="New Visit" class="btn-primary"/>
+                    <button name="action_view_visit_history" type="object"
+                            string="Visits History" class="btn-secondary"/>
+                </header>
                 <sheet>
                     <group>
                         <group string="Personal Information">
@@ -60,6 +66,19 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hr.hospital.patient.search</field>
+        <field name="model">hr.hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Patients">
+                <field name="name" string="Patient" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="phone" string="Phone" filter_domain="[('phone', 'ilike', self)]"/>
+                <field name="doctor_id"/>
+                <filter string="By Personal Doctor" name="groupby_doctor" context="{'group_by': 'doctor_id'}"/>
+            </search>
         </field>
     </record>
 

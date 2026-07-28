@@ -39,7 +39,7 @@
     <record id="demo_visit_5" model="hr.hospital.visit">
         <field name="patient_id" ref="demo_patient_2"/>
         <field name="doctor_id" ref="demo_doctor_1"/>
-        <field name="scheduled_date">2024-09-05 08:30:00</field>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=8)).strftime('%Y-%m-%d 11:00:00')"/>
         <field name="state">scheduled</field>
     </record>
 
@@ -47,10 +47,64 @@
         <field name="patient_id" ref="demo_patient_3"/>
         <field name="doctor_id" ref="demo_doctor_2"/>
         <field name="disease_id" ref="demo_disease_bronchitis"/>
-        <field name="scheduled_date">2024-03-12 13:00:00</field>
-        <field name="actual_date">2024-03-12 13:15:00</field>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=7)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="actual_date" eval="(datetime.now() - relativedelta(months=7)).strftime('%Y-%m-%d 10:15:00')"/>
         <field name="state">done</field>
         <field name="epicrisis" type="html"><p>Діагностовано бронхіт, призначено відхаркувальні засоби.</p></field>
+    </record>
+
+    <record id="demo_visit_7" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_2"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=6)).strftime('%Y-%m-%d 09:30:00')"/>
+        <field name="actual_date" eval="(datetime.now() - relativedelta(months=6)).strftime('%Y-%m-%d 09:40:00')"/>
+        <field name="state">done</field>
+        <field name="epicrisis" type="html"><p>Симптоми грипу, призначено медикаментозну терапію.</p></field>
+    </record>
+
+    <record id="demo_visit_8" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_3"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="disease_id" ref="disease_hypertension"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=5)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="actual_date" eval="(datetime.now() - relativedelta(months=5)).strftime('%Y-%m-%d 10:15:00')"/>
+        <field name="state">done</field>
+        <field name="epicrisis" type="html"><p>Контроль артеріального тиску, скориговано лікування.</p></field>
+    </record>
+
+    <record id="demo_visit_9" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_1"/>
+        <field name="doctor_id" ref="demo_doctor_3"/>
+        <field name="disease_id" ref="disease_diabetes"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=4)).strftime('%Y-%m-%d 11:00:00')"/>
+        <field name="state">cancelled</field>
+    </record>
+
+    <record id="demo_visit_10" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_3"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="disease_id" ref="demo_disease_bronchitis"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=3)).strftime('%Y-%m-%d 13:30:00')"/>
+        <field name="actual_date" eval="(datetime.now() - relativedelta(months=3)).strftime('%Y-%m-%d 13:45:00')"/>
+        <field name="state">done</field>
+        <field name="epicrisis" type="html"><p>Діагностовано бронхіт, стан покращується.</p></field>
+    </record>
+
+    <record id="demo_visit_11" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_1"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="disease_id" ref="demo_disease_arrhythmia"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=2)).strftime('%Y-%m-%d 08:45:00')"/>
+        <field name="state">scheduled</field>
+    </record>
+
+    <record id="demo_visit_12" model="hr.hospital.visit">
+        <field name="patient_id" ref="demo_patient_2"/>
+        <field name="doctor_id" ref="demo_doctor_3"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_date" eval="(datetime.now() - relativedelta(months=1)).strftime('%Y-%m-%d 15:00:00')"/>
+        <field name="state">scheduled</field>
     </record>
 
 </odoo>

@@ -6,6 +6,7 @@
         <field name="specialty">Кардіологія</field>
         <field name="phone">+380501234567</field>
         <field name="email">kovalenko@hospital.ua</field>
+        <field name="category_id" ref="doctor_category_specialist"/>
     </record>
 
     <record id="demo_doctor_2" model="hr.hospital.doctor">
@@ -13,6 +14,7 @@
         <field name="specialty">Неврологія</field>
         <field name="phone">+380507654321</field>
         <field name="email">petrenko@hospital.ua</field>
+        <field name="category_id" ref="doctor_category_specialist"/>
     </record>
 
     <record id="demo_doctor_3" model="hr.hospital.doctor">
@@ -20,6 +22,25 @@
         <field name="specialty">Загальна практика</field>
         <field name="phone">+380509876543</field>
         <field name="email">sydorenko@hospital.ua</field>
+        <field name="category_id" ref="doctor_category_top"/>
+    </record>
+
+    <record id="demo_doctor_intern_1" model="hr.hospital.doctor">
+        <field name="name">Гриценко Олег</field>
+        <field name="specialty">Кардіологія</field>
+        <field name="phone">+380631112244</field>
+        <field name="email">grytsenko@hospital.ua</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+        <field name="mentor_id" ref="demo_doctor_1"/>
+    </record>
+
+    <record id="demo_doctor_intern_2" model="hr.hospital.doctor">
+        <field name="name">Шевченко Тетяна</field>
+        <field name="specialty">Неврологія</field>
+        <field name="phone">+380631112255</field>
+        <field name="email">shevchenko@hospital.ua</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+        <field name="mentor_id" ref="demo_doctor_2"/>
     </record>
 
     <record id="demo_patient_1" model="hr.hospital.patient">
