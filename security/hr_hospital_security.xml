@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Patients only ever see their own patient card and their own
+         doctor-assignment history. -->
+    <record id="rule_hr_hospital_patient_own" model="ir.rule">
+        <field name="name">Patient: own card only</field>
+        <field name="model_id" ref="model_hr_hospital_patient"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_patient'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_hr_hospital_doctor_history_own" model="ir.rule">
+        <field name="name">Patient: own doctor history only</field>
+        <field name="model_id" ref="model_hr_hospital_doctor_history"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_patient'))]"/>
+        <field name="domain_force">[('patient_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Staff (Intern and up, i.e. also Doctor/Manager/Administrator via
+         implied_ids) are not restricted to "their own" patient/history:
+         without this rule, the narrow Patient rules above would apply to
+         everyone, since every role implies the Patient group. -->
+    <record id="rule_hr_hospital_patient_staff_view_all" model="ir.rule">
+        <field name="name">Staff: view all patients</field>
+        <field name="model_id" ref="model_hr_hospital_patient"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_intern'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <record id="rule_hr_hospital_doctor_history_staff_view_all" model="ir.rule">
+        <field name="name">Staff: view all doctor history</field>
+        <field name="model_id" ref="model_hr_hospital_doctor_history"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_intern'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <!-- Patients: view only their own visits. -->
+    <record id="rule_hr_hospital_visit_patient" model="ir.rule">
+        <field name="name">Patient: own visits only</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_patient'))]"/>
+        <field name="domain_force">[('patient_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Interns: view and edit only the visits where they are the doctor. -->
+    <record id="rule_hr_hospital_visit_intern" model="ir.rule">
+        <field name="name">Intern: own visits only</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_intern'))]"/>
+        <field name="domain_force">[('doctor_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Doctors: view and edit their own visits, plus the visits of the
+         interns they mentor. -->
+    <record id="rule_hr_hospital_visit_doctor" model="ir.rule">
+        <field name="name">Doctor: own visits and their interns' visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_doctor'))]"/>
+        <field name="domain_force">
+            ['|', ('doctor_id.user_id', '=', user.id), ('doctor_id.mentor_id.user_id', '=', user.id)]
+        </field>
+    </record>
+
+    <!-- Managers: read-only visibility on every visit, on top of the
+         edit rights on their own visits inherited from the Doctor group. -->
+    <record id="rule_hr_hospital_visit_manager_view_all" model="ir.rule">
+        <field name="name">Manager: view all visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_manager'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read">1</field>
+        <field name="perm_write">0</field>
+        <field name="perm_create">0</field>
+        <field name="perm_unlink">0</field>
+    </record>
+
+    <!-- Administrators: unrestricted read/write/create/delete on every visit. -->
+    <record id="rule_hr_hospital_visit_administrator_full" model="ir.rule">
+        <field name="name">Administrator: full access to all visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="groups" eval="[Command.link(ref('group_hr_hospital_administrator'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+</odoo>

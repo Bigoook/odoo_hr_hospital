@@ -40,6 +40,7 @@
                             <field name="blood_type"/>
                             <field name="insurance_number"/>
                             <field name="doctor_id"/>
+                            <field name="user_id" groups="hr_hospital.group_hr_hospital_manager"/>
                         </group>
                     </group>
                     <notebook>

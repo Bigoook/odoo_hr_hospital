@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.models import Constraint
 
@@ -10,8 +10,8 @@ class HrHospitalDisease(models.Model):
     _parent_store = True
     _order = 'parent_path'
 
-    name = fields.Char(string='Disease Name', required=True)
-    description = fields.Text(string='Description')
+    name = fields.Char(string='Disease Name', required=True, translate=True)
+    description = fields.Text(string='Description', translate=True)
     parent_id = fields.Many2one(
         comodel_name='hr.hospital.disease',
         string='Parent Disease',
@@ -32,8 +32,9 @@ class HrHospitalDisease(models.Model):
 
     @api.constrains('parent_id')
     def _check_parent_recursion(self):
+        """Forbid a disease from being its own (in)direct parent."""
         if self._has_cycle():
-            raise ValidationError('Error! You cannot create a cyclic hierarchy of diseases.')
+            raise ValidationError(_('Error! You cannot create a cyclic hierarchy of diseases.'))
 
     def _compute_display_name(self):
         for disease in self:
