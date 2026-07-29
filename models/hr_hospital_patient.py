@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class HrHospitalPatient(models.Model):
@@ -10,6 +10,11 @@ class HrHospitalPatient(models.Model):
     phone = fields.Char()
     email = fields.Char()
     insurance_number = fields.Char(string='Insurance Policy Number', size=20)
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='System User',
+        help='Portal user linked to this patient, used to restrict the patient to viewing only their own visits.',
+    )
     doctor_id = fields.Many2one(
         comodel_name='hr.hospital.doctor',
         string='Personal Doctor',
@@ -29,7 +34,7 @@ class HrHospitalPatient(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Visit History',
+            'name': _('Visit History'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'list,form,calendar',
             'domain': [('patient_id', '=', self.id)],
@@ -40,7 +45,7 @@ class HrHospitalPatient(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'New Visit',
+            'name': _('New Visit'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'form',
             'target': 'new',

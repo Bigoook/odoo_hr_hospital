@@ -1,6 +1,6 @@
 from datetime import datetime, time
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import date_utils
 
 
@@ -49,7 +49,7 @@ class HrHospitalDiseaseReportWizard(models.TransientModel):
             domain.append(('disease_id', 'in', self.disease_ids.ids))
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Disease Report',
+            'name': _('Disease Report'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'list,form',
             'domain': domain,

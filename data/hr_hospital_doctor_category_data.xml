@@ -2,17 +2,17 @@
 <odoo>
 
     <record id="doctor_category_intern" model="hr.hospital.doctor.category">
-        <field name="name">Лікар-інтерн</field>
+        <field name="name">Intern Doctor</field>
         <field name="sequence">10</field>
     </record>
 
     <record id="doctor_category_specialist" model="hr.hospital.doctor.category">
-        <field name="name">Лікар-спеціаліст</field>
+        <field name="name">Specialist Doctor</field>
         <field name="sequence">20</field>
     </record>
 
     <record id="doctor_category_top" model="hr.hospital.doctor.category">
-        <field name="name">Лікар вищої категорії</field>
+        <field name="name">Doctor of the Highest Category</field>
         <field name="sequence">30</field>
     </record>
 

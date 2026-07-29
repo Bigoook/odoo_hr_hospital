@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -59,13 +59,14 @@ class HrHospitalVisit(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Visits with the Same Diagnosis',
+            'name': _('Visits with the Same Diagnosis'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'list,form',
             'domain': [('disease_id', '=', self.disease_id.id)],
         }
 
     def write(self, vals):
+        """Prevent rescheduling, reassigning, or archiving a visit once it is done."""
         touches_protected = any(field_name in vals for field_name in self._PROTECTED_FIELDS)
         archiving = vals.get('active') is False
         if touches_protected or archiving:
@@ -73,14 +74,15 @@ class HrHospitalVisit(models.Model):
                 if visit.state == 'done':
                     if touches_protected:
                         raise UserError(
-                            'You cannot change the date, time, or doctor of a visit that has already taken place.'
+                            _('You cannot change the date, time, or doctor of a visit that has already taken place.')
                         )
                     if archiving:
-                        raise UserError('You cannot archive a visit that has already taken place.')
+                        raise UserError(_('You cannot archive a visit that has already taken place.'))
         return super().write(vals)
 
     def unlink(self):
+        """Prevent deleting a visit once it is done."""
         for visit in self:
             if visit.state == 'done':
-                raise UserError('You cannot delete a visit that has already taken place.')
+                raise UserError(_('You cannot delete a visit that has already taken place.'))
         return super().unlink()

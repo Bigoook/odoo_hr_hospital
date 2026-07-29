@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class HrHospitalVisitReportWizard(models.TransientModel):
@@ -49,7 +49,7 @@ class HrHospitalVisitReportWizard(models.TransientModel):
             domain.append(('disease_id', '=', self.disease_id.id))
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Visit Report',
+            'name': _('Visit Report'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'list,form',
             'domain': domain,

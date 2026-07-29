@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -45,21 +45,23 @@ class HrHospitalDoctor(models.Model):
 
     @api.depends('category_id')
     def _compute_is_intern(self):
+        """Flag the doctor as an intern when their category is the reference intern category."""
         intern_category = self.env.ref('hr_hospital.doctor_category_intern', raise_if_not_found=False)
         for doctor in self:
             doctor.is_intern = bool(intern_category and doctor.category_id == intern_category)
 
     @api.constrains('mentor_id')
     def _check_mentor_is_not_intern(self):
+        """Ensure an intern is never assigned as a mentor for another doctor."""
         for doctor in self:
             if doctor.mentor_id and doctor.mentor_id.is_intern:
-                raise ValidationError('A mentor cannot be a doctor who is an intern.')
+                raise ValidationError(_('A mentor cannot be a doctor who is an intern.'))
 
     def action_create_quick_visit(self):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'New Visit',
+            'name': _('New Visit'),
             'res_model': 'hr.hospital.visit',
             'view_mode': 'form',
             'target': 'new',

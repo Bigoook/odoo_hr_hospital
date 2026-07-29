@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class HrHospitalDoctorHistory(models.Model):
@@ -28,12 +28,13 @@ class HrHospitalDoctorHistory(models.Model):
 
     @api.onchange('assignment_date', 'change_date')
     def _onchange_check_dates(self):
+        """Warn (without blocking) if the change date precedes the assignment date."""
         self.ensure_one()
         if self.assignment_date and self.change_date and self.change_date < self.assignment_date:
             return {
                 'warning': {
-                    'title': 'Error',
-                    'message': "The doctor's change date cannot be earlier than the assignment date",
+                    'title': _('Error'),
+                    'message': _("The doctor's change date cannot be earlier than the assignment date"),
                 }
             }
         return None
